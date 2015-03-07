@@ -1,12 +1,16 @@
 package com.example.sam.hoofbump;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
 
 
 public class MainActivity extends ActionBarActivity {
+    public final static String HOOF_BUMP = "com.example.sam.hoofbump.BUMP";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,5 +39,14 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    /* Called when hooves are bumped*/
+    public void hoofBump(View view){
+        Intent intent = new Intent(this, DisplayBumpActivity.class);
+        EditText editText = (EditText) findViewById(R.id.edit_message);
+        String message = editText.getText().toString();
+        intent.putExtra(HOOF_BUMP, message);
+        startActivity(intent);
     }
 }
